@@ -1,0 +1,19 @@
+{
+  "name": "yuuma-mute",
+  "version": "1.0.0",
+  "description": "Discord bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamEld3st/yuuma-mute.git"
+  },
+  "author": "Andrzej Szczepaniak (IamEld3st)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamEld3st/yuuma-mute/issues"
+  },
+  "homepage": "https://github.com/IamEld3st/yuuma-mute#readme"
+}
