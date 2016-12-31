@@ -20,7 +20,7 @@ mainProcess.on('restart', function() {
 
 mainProcess.on('exit:code', function(code) {
     console.error('Forever detected script exited with code ' + code);
-    if (code === 2712) {
+    if (code === 170) {
     	console.log('Cause the bot was requested to be restarted restarting');
     	mainProcess.restart();
     }

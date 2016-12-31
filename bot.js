@@ -37,7 +37,7 @@ client.on('message', message => {
             message.channel.sendMessage("Brb... :wave:");
             console.log(Date.now()+' '+message.author.id+' issued shutdown command');
             console.log('Shutting down...');
-            process.exitCode = 2712;
+            process.exitCode = 170;
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"greet")) {
 			message.delete();
