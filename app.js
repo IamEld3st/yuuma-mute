@@ -23,8 +23,12 @@ mainProcess.on('exit:code', function(code) {
     	mainProcess.restart();
     }else if (code === 13) {
     	console.log('Update request therefore pulling newest code from master and restarting...');
-    	require('simple-git')().pull();
-    	mainProcess.restart();
+    	require('simple-git')()
+         .pull()
+         .then(function() {
+            console.log('pull done.');
+			mainProcess.restart();
+         });
     }
 });
 
