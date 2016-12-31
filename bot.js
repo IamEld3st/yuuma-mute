@@ -10,8 +10,12 @@ client.on('message', message => {
 		message.channel.sendMessage("Avaliable commands for YuumaMute:").then(message.channel.sendCode("txt", cfg.prefix+'help\n'+cfg.prefix+'mute <mention>\n'+cfg.prefix+'unmute <mention>\n'+cfg.prefix+'greet <mention>\n'+cfg.prefix+'shutdown'));
 	}else if (message.content.startsWith(cfg.prefix+"robotrevolution")){
 		message.reply("NO.");
-	}
-    if (message.member.roles.exists("id", cfg.adminRoleID) || message.author.id === cfg.ownerID ) {
+	}else if (message.content.startsWith(cfg.prefix+"roleid")){
+        message.mentions.roles.array().forEach(function (item, index){
+                message.channel.sendMessage('Role ID: '+item.id);
+            });
+    }
+    if (message.member.roles.has("id", cfg.adminRoleID) || message.author.id === cfg.ownerID ) {
         if (message.content.startsWith(cfg.prefix+"mute")) {
 	    	message.mentions.users.array().forEach(function (item, index){
                 message.guild.fetchMember(item).then(function(member){member.addRole(cfg.muteRoleID)});
@@ -36,7 +40,7 @@ client.on('message', message => {
 				console.log(Date.now()+' '+message.author.id+' issued greet commmand for '+item.id);
         	});
 		}
-    }else if (message.member.roles.exists("id", cfg.muteRoleID)) {
+    }else if (message.member.roles.has("id", cfg.muteRoleID)) {
         message.delete()
             .then( console.log(Date.now()+' Deleted message from '+message.author))
             .catch(console.error);
