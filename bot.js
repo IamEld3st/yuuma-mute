@@ -9,7 +9,7 @@ client.on('message', message => {
 	if (message.content.startsWith(cfg.prefix+"help")){
 		message.channel.sendMessage("Avaliable commands for YuumaMute:").then(message.channel.sendCode("txt", cfg.prefix+'help\n'+cfg.prefix+'mute <mention>\n'+cfg.prefix+'unmute <mention>\n'+cfg.prefix+'greet <mention>\n'+cfg.prefix+'shutdown'));
 	}else if (message.content.startsWith(cfg.prefix+"version")){
-		message.reply("I'm currently running 0.1");
+		message.reply("I'm currently running 0.2");
 	}else if (message.content.startsWith(cfg.prefix+"roleid")){
         message.mentions.roles.array().forEach(function (item, index){
                 message.channel.sendMessage('Role ID: '+item.id);
