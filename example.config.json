@@ -3,5 +3,6 @@
     "ownerID":"",
     "adminRoleID":"",
     "muteRoleID":"",
+    "logPath":"",
     "prefix":";"
 }
