@@ -15,12 +15,12 @@ var mainProcess = new (forever.Monitor)('bot.js', {
 
 
 mainProcess.on('restart', function() {
-    console.error('Forever restarting script for ' + child.times + ' time');
+    console.error('Forever restarting script for ' + mainProcess.times + ' time');
 });
 
 mainProcess.on('exit:code', function(code) {
     console.error('Forever detected script exited with code ' + code);
-    if (code === 170) {
+    if (code === 12) {
     	console.log('Cause the bot was requested to be restarted restarting');
     	mainProcess.restart();
     }

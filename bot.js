@@ -35,9 +35,9 @@ client.on('message', message => {
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"restart")){
             message.channel.sendMessage("Brb... :wave:");
-            console.log(Date.now()+' '+message.author.id+' issued shutdown command');
-            console.log('Shutting down...');
-            process.exitCode = 170;
+            console.log(Date.now()+' '+message.author.id+' issued restart command');
+            console.log('Restarting...');
+            process.exitCode = 12;
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"greet")) {
 			message.delete();
