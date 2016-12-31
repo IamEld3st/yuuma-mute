@@ -19,23 +19,23 @@ client.on('message', message => {
         if (message.content.startsWith(cfg.prefix+"mute")) {
 	    	message.mentions.users.array().forEach(function (item, index){
                 message.guild.fetchMember(item).then(function(member){member.addRole(cfg.muteRoleID)});
-                message.channel.sendMessage('Muted '+item.id);
-				console.log(Date.now()+' '+message.author.id+' issued mute commmand for '+item.id);
+                message.channel.sendMessage('Muted '+item.username);
+				console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued mute commmand for '+item.id+'/'+message.author.username);
         	});
         }else if (message.content.startsWith(cfg.prefix+"unmute")) {
             message.mentions.users.array().forEach(function (item, index) {
 	    		message.guild.fetchMember(item).then(function(member){member.removeRole(cfg.muteRoleID)});
-				message.channel.sendMessage('Unmuted '+item.id);
-				console.log(Date.now()+' '+message.author.id+' issued unmute commmand for '+item.id);
+				message.channel.sendMessage('Unmuted '+item.username);
+				console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued unmute commmand for '+item.id+'/'+message.author.username);
    			});
         }else if (message.content.startsWith(cfg.prefix+"shutdown")) {
             message.channel.sendMessage("Bye! :heart:");
-			console.log(Date.now()+' '+message.author.id+' issued shutdown command');
+			console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued shutdown command');
             console.log('Shutting down...');
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"restart")){
             message.channel.sendMessage("Brb... :wave:");
-            console.log(Date.now()+' '+message.author.id+' issued restart command');
+            console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued restart command');
             console.log('Restarting...');
             process.exitCode = 12;
             client.destroy();
@@ -43,12 +43,12 @@ client.on('message', message => {
 			message.delete();
 			message.mentions.users.array().forEach(function (item, index){
                 message.channel.sendMessage("Hello, "+item.username+"! :heart:");
-				console.log(Date.now()+' '+message.author.id+' issued greet commmand for '+item.id);
+				console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued greet commmand for '+item.id+'/'+message.author.username);
         	});
 		}
     }else if (message.member.roles.has("id", cfg.muteRoleID)) {
         message.delete()
-            .then( console.log(Date.now()+' Deleted message from '+message.author))
+            .then( console.log(Date.now()+' Deleted message from '+message.author.id+'/'+message.author.username))
             .catch(console.error);
     }
 });
