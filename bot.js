@@ -8,8 +8,8 @@ client.on('ready', () => {
 client.on('message', message => {
 	if (message.content.startsWith(cfg.prefix+"help")){
 		message.channel.sendMessage("Avaliable commands for YuumaMute:").then(message.channel.sendCode("txt", cfg.prefix+'help\n'+cfg.prefix+'mute <mention>\n'+cfg.prefix+'unmute <mention>\n'+cfg.prefix+'greet <mention>\n'+cfg.prefix+'shutdown'));
-	}else if (message.content.startsWith(cfg.prefix+"robotrevolution")){
-		message.reply("NO.");
+	}else if (message.content.startsWith(cfg.prefix+"version")){
+		message.reply("I'm currently running 0.1");
 	}else if (message.content.startsWith(cfg.prefix+"roleid")){
         message.mentions.roles.array().forEach(function (item, index){
                 message.channel.sendMessage('Role ID: '+item.id);
@@ -38,6 +38,12 @@ client.on('message', message => {
             console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued restart command');
             console.log('Restarting...');
             process.exitCode = 12;
+            client.destroy();
+        }else if (message.content.startsWith(cfg.prefix+"update")) {
+            message.channel.sendMessage("Updating, brb... :wave:");
+            console.log(Date.now()+' '+message.author.id+'/'+message.author.username+' issued update command');
+            console.log('Updating...');
+            process.exitCode = 13;
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"greet")) {
 			message.delete();

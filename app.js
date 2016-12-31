@@ -12,8 +12,6 @@ var mainProcess = new (forever.Monitor)('bot.js', {
 	'errFile': cfg.logPath
 });
 
-
-
 mainProcess.on('restart', function() {
     console.error('Forever restarting script for ' + mainProcess.times + ' time');
 });
@@ -21,7 +19,11 @@ mainProcess.on('restart', function() {
 mainProcess.on('exit:code', function(code) {
     console.error('Forever detected script exited with code ' + code);
     if (code === 12) {
-    	console.log('Cause the bot was requested to be restarted restarting');
+    	console.log('Bot was requested to be restarted therefore restarting...');
+    	mainProcess.restart();
+    }else if (code === 13) {
+    	console.log('Update request therefore pulling newest code from master and restarting...');
+    	require('simple-git')().pull();
     	mainProcess.restart();
     }
 });
