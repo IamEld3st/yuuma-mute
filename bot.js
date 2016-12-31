@@ -31,7 +31,13 @@ client.on('message', message => {
         }else if (message.content.startsWith(cfg.prefix+"shutdown")) {
             message.channel.sendMessage("Bye! :heart:");
 			console.log(Date.now()+' '+message.author.id+' issued shutdown command');
-            console.log('Shutting down...')
+            console.log('Shutting down...');
+            client.destroy();
+        }else if (message.content.startsWith(cfg.prefix+"restart")){
+            message.channel.sendMessage("Brb... :wave:");
+            console.log(Date.now()+' '+message.author.id+' issued shutdown command');
+            console.log('Shutting down...');
+            process.exitCode = 2712;
             client.destroy();
         }else if (message.content.startsWith(cfg.prefix+"greet")) {
 			message.delete();
