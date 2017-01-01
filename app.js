@@ -13,18 +13,26 @@ var mainProcess = new (forever.Monitor)('bot.js', {
 });
 
 mainProcess.on('restart', function() {
-    console.error('Forever restarting script for ' + mainProcess.times + ' time');
+    console.log('[Bootstrap] Forever restarting script for ' + mainProcess.times + ' time');
 });
 
 mainProcess.on('exit:code', function(code) {
-    console.error('Forever detected script exited with code ' + code);
+    console.log('[Bootstrap] Forever detected script exited with code ' + code);
     if (code === 12) {
-    	console.log('Bot was requested to be restarted therefore restarting...');
+    	console.log('[Bootstrap] Bot was requested to be restarted therefore restarting...');
     	mainProcess.restart();
     }else if (code === 13) {
-    	console.log('Update request therefore pulling newest code from master and restarting...');
+    	console.log('[Bootstrap] Update request therefore pulling newest code from "master" and restarting...');
     	require('simple-git')()
          .pull()
+         .then(function() {
+            console.log('pull done.');
+			mainProcess.restart();
+         });
+    }else if (code === 14) {
+    	console.log('[Bootstrap] Update request therefore pulling newest code from "development" and restarting...');
+    	require('simple-git')()
+         .pull('origin','dev')
          .then(function() {
             console.log('pull done.');
 			mainProcess.restart();
@@ -32,4 +40,4 @@ mainProcess.on('exit:code', function(code) {
     }
 });
 
-mainProcess.start();
+mainProcess.start().then(console.log('[Bootstrap] Bot Started!'));
