@@ -37,7 +37,7 @@ mainProcess.on('exit:code', function(code) {
             console.log('pull done.');
 			mainProcess.restart();
          });
-    }else{main.mainProcess.kill();}
+    }//else{mainProcess.kill();}
 });
 
 mainProcess.start();
