@@ -37,7 +37,7 @@ mainProcess.on('exit:code', function(code) {
             console.log('pull done.');
 			mainProcess.restart();
          });
-    }
+    }else{main.mainProcess.kill();}
 });
 
-mainProcess.start().then(console.log('[Bootstrap] Bot Started!'));
+mainProcess.start().then(function(){console.log('[Bootstrap] Bot Started!');});
