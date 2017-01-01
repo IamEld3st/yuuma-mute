@@ -40,4 +40,5 @@ mainProcess.on('exit:code', function(code) {
     }else{main.mainProcess.kill();}
 });
 
-mainProcess.start().then(function(){console.log('[Bootstrap] Bot Started!');});
+mainProcess.start();
+console.log('[Bootstrap] Bot Started!');
